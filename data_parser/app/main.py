@@ -14,6 +14,7 @@ from session import create_session, agents
 
 
 logging.basicConfig(level=logging.WARNING, format='%(asctime)s : %(levelname)s : %(message)s')
+logger = logging.getLogger(__name__)
 
 
 async def parse_save_tracks(
@@ -45,7 +46,7 @@ async def parse_save_artist_info(
 async def main(
     metatag: str, 
     concurrent_tasks: int, 
-    what: Literal['tracks', 'infos'],
+    what: Literal['artists', 'tracks', 'artists_info'],
     session_timeout: int = 60*60
 ):
     client = AsyncIOMotorClient(config.MONGO_URL)
@@ -67,28 +68,29 @@ async def main(
         artist_infos = await parser.parse_all_artists_from_metatag(metatag)
         artist_ids = [artist_info.get('artist').get('id') for artist_info in artist_infos]
 
-        if what == 'tracks':
+        if what == 'artists':
             await db.insert_artists(artist_infos)
 
+        elif what == 'tracks':
             await tqdm.gather(
                 *[parse_save_tracks(semaphore, parser, db, artist_id) for artist_id in artist_ids]
             )
-        elif what == 'infos':
+
+        elif what == 'artists_info':
             await tqdm.gather(
                 *[parse_save_artist_info(semaphore, parser, db, artist_id) for artist_id in artist_ids]
             )
 
     end = time.time()
 
-    total_time = end - start
-    print(f'Total time: {total_time}')
+    logger.warning(f'Total time: {end - start}')
 
 
 if __name__ == '__main__':
     parser = ArgumentParser(description='Parse artists and tracks from metatag')
     
     parser.add_argument('metatag', type=str, help='metatag for parsing artists and tracks')
-    parser.add_argument('what', type=str, choices=['tracks', 'infos'], help='data type to parse')
+    parser.add_argument('what', type=str, choices=['artists', 'tracks', 'artists_info'], help='data type to parse')
     parser.add_argument('concurrent_tasks', type=int, help='number of concurrent tasks')
 
     args = parser.parse_args()
