@@ -43,6 +43,7 @@ const Home: NextPage = () => {
                         className='link' 
                         href='https://github.com/dumaevrinat/lyrics_analysis' 
                         target='_blank'
+                        rel='noreferrer'
                     >
                         GitHub репозиторий
                     </a>
@@ -50,6 +51,7 @@ const Home: NextPage = () => {
                         className='link' 
                         href='https://github.com/dumaevrinat' 
                         target='_blank'
+                        rel='noreferrer'
                     >
                         Думаев Ринат
                     </a>
