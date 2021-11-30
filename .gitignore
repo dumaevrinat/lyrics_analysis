@@ -1,4 +1,5 @@
-
+data_visualization/.next/**
+data_visualization/node_modules/**
 HELP.md
 .gradle
 build/
