@@ -3,9 +3,23 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 2rem;
+  gap: 3rem;
+  padding-bottom: 4rem;
 }
 
 .footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: var(--color-white);
+  color: var(--color-black);
+}
 
+.footerSection {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  gap: 2rem;
 }

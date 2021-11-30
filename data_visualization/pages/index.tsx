@@ -8,6 +8,7 @@ import styles from 'styles/home.module.css'
 import { UniqueWordsArtists } from 'components/sections/home/unique-words-artists'
 import { UniqueWordsPoses } from 'components/sections/home/unique-words-poses'
 import { TypicalWordsPoses } from 'components/sections/home/typical-words-poses'
+import { Section } from 'components/section'
 
 
 const Home: NextPage = () => {
@@ -23,7 +24,10 @@ const Home: NextPage = () => {
             <main className={styles.main}>
                 <Intro />
                 
-                <UniqueWordsGenres />
+                <div id='start'>
+                    <UniqueWordsGenres />
+                </div>
+                
                 <UniqueWordsArtists />
                 <UniqueWordsPoses />
 
@@ -34,7 +38,22 @@ const Home: NextPage = () => {
             </main>
 
             <footer className={styles.footer}>
-
+                <Section title={''} className={styles.footerSection}>
+                    <a 
+                        className='link' 
+                        href='https://github.com/dumaevrinat/lyrics_analysis' 
+                        target='_blank'
+                    >
+                        GitHub репозиторий
+                    </a>
+                    <a 
+                        className='link' 
+                        href='https://github.com/dumaevrinat' 
+                        target='_blank'
+                    >
+                        Думаев Ринат
+                    </a>
+                </Section>
             </footer>
         </>
     )
