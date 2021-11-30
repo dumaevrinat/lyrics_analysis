@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Section } from 'components/section'
 import { Epochs } from 'components/sections/home/epochs'
 import { Intro } from 'components/sections/home/intro'
 import { TypicalWordsGenres } from 'components/sections/home/typical-words-genres'
@@ -19,10 +18,6 @@ const Home: NextPage = () => {
                 <meta name='description' content='Анализ данных Яндекс.Музыки' />
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <meta name='theme-color' content='#000' />
-                <link rel='icon' href='/logo.svg' />
-                <link rel='preconnect' href='https://fonts.googleapis.com' />
-                <link rel='preconnect' href='https://fonts.gstatic.com' />
-                <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap' rel='stylesheet' />
             </Head>
 
             <main className={styles.main}>

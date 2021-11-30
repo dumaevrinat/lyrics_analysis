@@ -44,6 +44,7 @@ export const UniqueWordsArtists: FC = () => {
                 <Distribution>
                     {distributionData?.map(rangeData =>
                         <DistributionRange
+                            key={rangeData.items[0].label}
                             min={rangeData.min}
                             max={rangeData.max}
                             items={rangeData.items}
