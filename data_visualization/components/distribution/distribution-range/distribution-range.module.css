@@ -1,0 +1,35 @@
+.rangeLabel {
+    white-space: nowrap;
+    font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+@media (max-width: 640px) {
+    .rangeLabel {
+        margin-top: 1.5rem;
+    }
+}
+
+.rangeItems {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.rangeItem {
+    display: flex;
+    padding: 0.2rem 0.5rem;
+    gap: 0.3rem;
+    border-radius: 1rem;
+    color: var(--color-white);
+    background: var(--color-primary);
+}
+
+.rangeItemLabel {
+    font-size: 0.8rem;
+}
+
+.rangeItemValue {
+    color: var(--color-black);
+    font-size: 0.8rem;
+}

@@ -1,0 +1,12 @@
+.distribution {
+    display: grid;
+    grid-template-columns: minmax(0, auto) 1fr;
+    gap: 1.5rem 1rem;    
+}
+
+@media (max-width: 640px) {
+    .distribution {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}

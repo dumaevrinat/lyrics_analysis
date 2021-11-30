@@ -1,0 +1,26 @@
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.data {
+    display: flex;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 1rem;
+}
+
+.labels {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.dataColumns {
+    display: flex;
+    gap: 1rem;
+}
