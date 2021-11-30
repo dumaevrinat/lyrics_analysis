@@ -8,30 +8,34 @@ tokens_by_genre_year = [
                             {'$gte': [{'$first': '$track.albums.year'}, 1990]},
                             {'$lt': [{'$first': '$track.albums.year'}, 2000]}
                         ]},
-                        'then': 1990
+                        'then': {'start': 1990, 'end': 2000}
                     },
                     {
                         'case': {'$and': [
                             {'$gte': [{'$first': '$track.albums.year'}, 2000]},
                             {'$lt': [{'$first': '$track.albums.year'}, 2010]}
                         ]},
-                        'then': 2000
+                        'then': {'start': 2000, 'end': 2010}
                     },
                     {
                         'case': {'$and': [
                             {'$gte': [{'$first': '$track.albums.year'}, 2010]},
                             {'$lt': [{'$first': '$track.albums.year'}, 2015]}
                         ]},
-                        'then': 2010
+                        'then': {'start': 2010, 'end': 2015}
                     },
                     {
                         'case': {'$gte': [{'$first': '$track.albums.year'}, 2015]},
-                        'then': 2015
+                        'then': {'start': 2015, 'end': 2022}
                     }
                 ],
                 'default': 'other'
             }
         }
+    }},
+
+    {'$match': { 
+        'year' : { '$type': 'object' } 
     }},
 
     {'$group': {
@@ -72,11 +76,6 @@ tokens_by_genre_year = [
             'year': '$counts.year'
         }
     }},
-
-    # {'$match': {
-    #     'counts.count': {'$lte': 0.999},
-    #     'counts.base_count': {'$gte': 20}
-    # }},
 
     {'$sort': {'counts.count': -1}},
 

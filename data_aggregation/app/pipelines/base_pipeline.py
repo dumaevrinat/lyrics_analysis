@@ -1,6 +1,20 @@
 base_pipeline = [
     {'$unwind': '$tokens'},
 
+    {'$set': {
+        'tokens.lemma': {
+            '$convert': {
+                'input': '$tokens.lemma',
+                'to': 'int',
+                'onError': '$tokens.lemma'
+            }
+        }
+    }},
+
+    {'$match': {
+        '$expr': {'$not': [{'$isNumber': '$tokens.lemma'}]}
+    }},
+
     {'$group': {
         '_id': {
             '_id': '$_id', 
@@ -32,7 +46,7 @@ base_pipeline = [
         'count': 1,
         'track': {
             'title': '$track_info.track.title',
-            'artists': '$track_info.track.artists',
+            'artists': '$track_info.artists',
             'albums': '$track_info.track.albums'
         }
     }},
@@ -64,6 +78,16 @@ base_pipeline = [
     }}
 ]
 
+def merge(collection: str): 
+    return [
+        {'$merge': {
+            'into': collection,
+            'on': '_id',
+            'whenMatched': 'replace', 
+            'whenNotMatched': 'insert'
+        }}
+    ]
+
 filter_token_pos_base = [
     {'$match': {
         '_id.pos': {
@@ -77,6 +101,12 @@ filter_token_pos = [
         '_id.pos': {
             '$in': ['ADJ', 'ADV', 'NOUN', 'VERB']
         }
+    }}
+]
+
+filter_token_lemma = [
+    {'$match': {
+        '$expr': {'$ne': [{'$strLenCP': '$_id.lemma'}, 1]}
     }}
 ]
 
