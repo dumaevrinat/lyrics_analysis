@@ -1,0 +1,28 @@
+.wordsGroups {
+    display: grid;
+    grid-template-columns: minmax(0, auto) 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 640px) {
+    .wordsGroups { 
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+}
+
+.label {
+    line-height: 2.0em;
+}
+
+@media (max-width: 640px) {
+    .label {
+        margin-top: 1.5rem;
+        line-height: 1.8em;
+    }
+}
+
+.group {
+    color: var(--color-primary);
+}

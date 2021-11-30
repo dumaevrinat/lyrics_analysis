@@ -1,0 +1,21 @@
+.wordList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-image: linear-gradient(180deg, var(--color-secondary) 50%, var(--color-black));
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+}
+
+.wordListRow {
+    flex-direction: row;
+}
+ 
+.wordListColumn {
+    flex-direction: column;
+    gap: 0.5rem;
+}

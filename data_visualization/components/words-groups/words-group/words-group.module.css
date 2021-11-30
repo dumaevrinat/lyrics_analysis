@@ -1,0 +1,14 @@
+.wordsGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 1rem;
+    font-size: 2rem;
+    line-height: 1.2em;
+}
+
+@media (max-width: 640px) {
+    .wordsGroup { 
+        font-size: 1.5rem;
+        line-height: 1.2em;
+    }
+}

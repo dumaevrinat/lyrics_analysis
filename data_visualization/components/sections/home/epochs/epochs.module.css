@@ -1,0 +1,12 @@
+.wordsEpochs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;    
+}
+
+@media (max-width: 640px) {
+    .wordsEpochs {
+        justify-content: flex-start;
+    }
+}
