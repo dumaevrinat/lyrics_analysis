@@ -1,6 +1,7 @@
 import logging
 from typing import Dict
 from motor.motor_asyncio import AsyncIOMotorClient
+from returns.curry import curry
 from db import Database
 from returns.pipeline import flow
 from tqdm.asyncio import tqdm
@@ -20,31 +21,25 @@ async def artists_graph(db: Database, graph_name: str):
     graph.save(f'{graph_name}_{len(artists)}.gv')
 
 
-async def transform_save_track_lyric(db: Database, track: Dict):
-    doc = flow(
-            track,
-            lambda track: track.get('lyric')[0].get('fullLyrics'),
-            transforms.lyric_pipeline,
-            lambda doc: doc.as_json,
-            lambda doc: {
-                '_id': track.get('_id'), 
-                'tokens': doc.tokens
-            }
-        )
-
-    await db.insert_track_with_tokens(doc)
+@curry
+async def insert_track_with_tokens(db: Database, track: Dict):
+    return db.insert_track_with_tokens(track)
 
 
-async def transform_save_tracks_lyrics(db: Database):
+async def track_lyric_flow(db: Database, track: Dict):
+    await flow(
+        track,
+        lambda track: track.get('lyric')[0].get('fullLyrics'),
+        transforms.lyric_pipeline(track.get('_id')),
+        insert_track_with_tokens(db)
+    )
+
+
+async def tracks_lyrics(db: Database):
     cursor = db.tracks_with_lyric()
 
     async for track in tqdm(cursor):
-        await flow(
-            track,
-            lambda track: track.get('lyric')[0].get('fullLyrics'),
-            transforms.lyric_pipeline(track.get('_id')),
-            db.insert_track_with_tokens
-        )
+        await track_lyric_flow(db, track)
 
 
 async def main():
@@ -57,8 +52,8 @@ async def main():
         config.TRACKS_COLLECTION_NAME,
         config.TRACKS_TOKENS_COLLECTION_NAME
     )
-
-    await transform_save_tracks_lyrics(db)
+    
+    await artists_graph(db, 'artists_graph')
 
 
 if __name__ == '__main__':
