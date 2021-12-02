@@ -1,0 +1,16 @@
+.counters {
+    display: grid;
+    grid-template-rows: minmax(0, auto) 1fr;
+    grid-auto-columns: minmax(0, auto);
+    grid-auto-flow: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+@media (max-width: 640px) {
+    .counters { 
+        grid-template-columns: 1fr;
+        grid-auto-flow: row;
+        gap: 0.5rem;
+    }
+}

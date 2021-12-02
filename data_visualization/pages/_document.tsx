@@ -4,7 +4,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang='ru'>
         <Head>
             <link rel='icon' href='/logo.svg' />
             <link rel='preconnect' href='https://fonts.googleapis.com' />

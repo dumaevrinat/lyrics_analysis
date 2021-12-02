@@ -1,26 +1,48 @@
 import { FC } from 'react'
 import { Section } from 'components/section'
-import { NumericCounter } from 'components/numeric-counter'
 import { getNumericCounterData } from 'data/transform'
-import { Pos } from 'types'
+import { Genre, Pos } from 'types'
+import { CircleCounters } from 'components/circle-counters'
+import { CircleCounter } from 'components/circle-counters/circle-counter'
+import { Chip } from 'components/chip'
+import styles from './unique-words-poses.module.css'
+import { genreConverter, posConverter, posToColor } from 'data/converters'
 
 
 export const UniqueWordsPoses: FC = () => {
-    const poses: Pos[] = ['NOUN', 'VERB', 'ADJ', 'ADV', 'PRON']
-    const colors = ['#0018FF', '#147DFE', '#27D4FE', '#3BFDDE', '#4EFDA2']
+    const poses: Pos[] = ['ADJ', 'ADV', 'NOUN', 'OTHER', 'VERB']
 
     const numericCounterData = getNumericCounterData(poses)
 
     return (
         <Section title='Уникальные слова: части речи'>
             <p className='max-w-1000'>
-                Посчитаем количество уникальныx слов в одном треке отдельно для каждой части речи.
+                Посчитаем количество уникальныx слов в одном треке отдельно для каждой части речи и сгруппируем их.
             </p>
 
-            <NumericCounter
-                data={numericCounterData}
-                colors={colors}
-            />
+            <CircleCounters>
+                {numericCounterData.map(counter =>
+                    <CircleCounter
+                        title={genreConverter[counter.genre as Genre]}
+                        key={counter.genre}
+                        total={counter.totalAvg}
+                        circlesGroups={counter.poses.map(pos => ({
+                            count: pos.avg,
+                            color: posToColor[pos.pos as Pos]
+                        }))}
+                    />
+                )}
+            </CircleCounters>
+
+            <div className={styles.posesChips}>
+                {poses.map(pos => 
+                    <Chip 
+                        title={posConverter[pos as Pos].plural}
+                        color={posToColor[pos]}
+                    />
+                )}
+            </div>
+
         </Section>
     )
 }

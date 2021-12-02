@@ -1,6 +1,6 @@
 import { FC, Fragment } from 'react'
 import styles from './words-groups.module.css'
-import { WordsGroup } from './words-group/words-group'
+import { WordsGroup } from './words-group'
 
 
 export type WordsGroup = {

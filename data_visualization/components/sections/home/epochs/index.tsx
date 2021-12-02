@@ -4,10 +4,11 @@ import { Section } from 'components/section'
 import { Radio } from 'components/radio'
 import { WordsEpoch } from 'components/words-epoch'
 import { Type, WordsList } from 'components/words-list'
-import { genreConverter, getWordsEpochsData, getWordsEpochsGenres } from 'data/transform'
+import { getWordsEpochsData, getWordsEpochsGenres } from 'data/transform'
 import { Genre } from 'types'
 import styles from './epochs.module.css'
 import { Chart } from 'components/chart'
+import { genreConverter } from 'data/converters'
 
 
 export const Epochs: FC = () => {

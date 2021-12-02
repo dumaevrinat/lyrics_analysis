@@ -1,12 +1,13 @@
 import { ChangeEvent, FC, useState } from 'react'
 import { Section } from 'components/section'
-import { genreConverter, getUniqueWordsDistribution, getUniqueWordsDistributionGenres } from 'data/transform'
+import { getUniqueWordsDistribution, getUniqueWordsDistributionGenres } from 'data/transform'
 import { Genre } from 'types'
 import { Distribution } from 'components/distribution'
-import { DistributionRange } from 'components/distribution/distribution-range/distribution-range'
+import { DistributionRange } from 'components/distribution/distribution-range'
 import { RadioGroup } from 'components/radio-group'
 import { Radio } from 'components/radio'
 import { Chart } from 'components/chart'
+import { genreConverter } from 'data/converters'
 
 
 export const UniqueWordsArtists: FC = () => {

@@ -1,0 +1,36 @@
+.circleCounter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.circles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+@media (max-width: 640px) {
+    .titleContainer {
+        margin-top: 1.5rem;
+        flex-direction: row;
+        gap: 0.4rem;
+    }
+}
+
+.title {
+    
+}
+
+.value {
+    color: var(--color-secondary);
+}

@@ -28,8 +28,8 @@ const Home: NextPage = () => {
                     <UniqueWordsGenres />
                 </div>
                 
-                <UniqueWordsArtists />
                 <UniqueWordsPoses />
+                <UniqueWordsArtists />
 
                 <TypicalWordsGenres />
                 <TypicalWordsPoses />

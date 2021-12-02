@@ -4,8 +4,9 @@ import { Radio } from 'components/radio'
 import { Section } from 'components/section'
 import { RadioGroup } from 'components/radio-group'
 import { WordsGroups } from 'components/words-groups'
-import { genreConverter, getWordsGroupsDataByGenre, getWordsGroupsGenres } from 'data/transform'
+import { getWordsGroupsDataByGenre, getWordsGroupsGenres } from 'data/transform'
 import { Genre } from 'types'
+import { genreConverter } from 'data/converters'
 
 
 export const TypicalWordsPoses: FC = () => {
@@ -22,7 +23,7 @@ export const TypicalWordsPoses: FC = () => {
         <Section title='Характерные слова: части речи'>
             <p className='max-w-1000'>
                 Найдем самые характерные слова для каждой части речи.
-                Для&nbsp;это отфильтруем слова, которые соответствуют основным частям речи,
+                Для&nbsp;этого отфильтруем слова, которые соответствуют основным частям речи,
                 и отсортируем по их характерности для данной части речи.
             </p>
 

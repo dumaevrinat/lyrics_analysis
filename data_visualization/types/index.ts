@@ -15,4 +15,5 @@ export type Pos =
     'VERB' |
     'ADJ' |
     'ADV' |
-    'PRON'
+    'PRON' |
+    'OTHER'
