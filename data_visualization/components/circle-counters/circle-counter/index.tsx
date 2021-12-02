@@ -22,8 +22,9 @@ export const CircleCounter: FC<CircleCounterProps> = ({ title, total, circlesGro
             </div>
 
             <div className={styles.circles}>
-                {circlesGroups.map(group =>
+                {circlesGroups.map((group, index) =>
                     <CirclesGroup
+                        key={index}
                         count={group.count} 
                         color={group.color} 
                     />

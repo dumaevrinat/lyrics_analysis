@@ -23,8 +23,8 @@ export const UniqueWordsPoses: FC = () => {
             <CircleCounters>
                 {numericCounterData.map(counter =>
                     <CircleCounter
-                        title={genreConverter[counter.genre as Genre]}
                         key={counter.genre}
+                        title={genreConverter[counter.genre as Genre]}
                         total={counter.totalAvg}
                         circlesGroups={counter.poses.map(pos => ({
                             count: pos.avg,
@@ -37,6 +37,7 @@ export const UniqueWordsPoses: FC = () => {
             <div className={styles.posesChips}>
                 {poses.map(pos => 
                     <Chip 
+                        key={pos}
                         title={posConverter[pos as Pos].plural}
                         color={posToColor[pos]}
                     />
