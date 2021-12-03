@@ -1,14 +1,7 @@
 from typing import Dict, List
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorCollection, AsyncIOMotorCursor
 from pymongo.operations import UpdateOne
-import config
 
-
-client = AsyncIOMotorClient(config.MONGO_URL)
-db = client[config.DATABASE_NAME]
-
-tracks_collection = db[config.TRACKS_COLLECTION_NAME]
-artists_collection=  db[config.ARTISTS_COLLECTION_NAME]
 
 class Database:
     def __init__(
