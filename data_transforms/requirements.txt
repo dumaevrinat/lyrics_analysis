@@ -1,0 +1,5 @@
+aio_pika>=6.8.0
+returns>=0.17.0
+motor>=2.5.1
+natasha>=1.4.0
+graphviz>=0.17
