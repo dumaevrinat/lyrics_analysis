@@ -10,7 +10,7 @@
 .circles {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.15rem;
+    gap: 4px;
 }
 
 .titleContainer {
