@@ -45,7 +45,7 @@ tokens_by_genre_year = [
             'year': '$year'
         },
 
-        'count': {'$sum': 1}
+        'count': {'$sum': '$count'}
     }},
     
     {'$group': {

@@ -41,7 +41,7 @@ tokens_by_genre_pos = [
 
     {'$match': {
         'counts.count': {'$lte': 0.999},
-        'counts.base_count': {'$gte': 20}
+        'counts.base_count': {'$gte': 15}
     }},
 
     {'$sort': {'counts.count': -1}},

@@ -11,7 +11,7 @@ tokens_by_genre = [
     {'$group': {
         '_id': '$_id.lemma',
         'total_count': {
-            '$avg': '$count'
+            '$sum': '$count'
         },
         'counts': {
             '$push': {
@@ -35,10 +35,10 @@ tokens_by_genre = [
         }
     }},
 
-    # {'$match': {
-    #     'counts.count': {'$lte': 0.999},
-    #     'counts.base_count': {'$gte': 50}
-    # }},
+    {'$match': {
+        'counts.count': {'$lte': 0.999},
+        'counts.base_count': {'$gte': 20}
+    }},
 
     {'$sort': {'counts.count': -1}},
 

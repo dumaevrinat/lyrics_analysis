@@ -4,7 +4,7 @@ tokens_avg_by_genre = [
             'id': '$_id._id',
             'genre': {'$first': '$track.albums.genre'}
         },
-        'count': {'$sum': '$count'}
+        'count': {'$sum': 1}
     }},
 
     {'$group': {

@@ -81,7 +81,7 @@ tokens_avg_by_genre_artist = [
     {'$unwind': '$artists'},
 
     { '$sort': {
-        'artists.avg' : -1 
+        'artists.avg' : 1 
     }},
 
     {'$bucket': {
