@@ -7,7 +7,7 @@ from .tokens_avg_by_genre_pos import tokens_avg_by_genre_pos
 from .tokens_avg_by_genre_artist import tokens_avg_by_genre_artist
 
 
-main_pipeline = [
+main_pipeline = base_pipeline + [
     {'$facet': {
         'tokens_by_genre': filter_token_pos + filter_token_lemma + tokens_by_genre,
         'tokens_by_genre_pos': filter_token_pos + filter_token_lemma + tokens_by_genre_pos,
