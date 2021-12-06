@@ -1,0 +1,98 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGODB_DATA_DIR: /data/db
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodbdata:/data/db
+    networks:
+      - network
+  
+
+  rabbitmq:
+    image: '3.9-management'
+    ports: 
+      - '5672:5672'
+      - '15672:15672'
+    networks:
+      - network
+  
+
+  data_parser:
+    build: data_parser
+    environment:
+      MONGO_URL: ${MONGO_URL}
+      DATABASE_NAME: ${DATABASE_NAME}
+      ARTISTS_COLLECTION_NAME: ${ARTISTS_COLLECTION_NAME}
+      ARTISTS_INFO_COLLECTION_NAME: ${ARTISTS_INFO_COLLECTION_NAME}
+      TRACKS_COLLECTION_NAME: ${TRACKS_COLLECTION_NAME}
+      COOKIES_FILE_PATH: 'cookies.json'
+    depends_on:
+      - mongodb
+    networks:
+      - network
+
+
+  data_loader:
+    build: data_loader
+    environment:
+      MONGO_URL: ${MONGO_URL}
+      DATABASE_NAME: ${DATABASE_NAME}
+      TRACKS_COLLECTION_NAME: ${TRACKS_COLLECTION_NAME}
+      QUEUE_URL: ${QUEUE_URL}
+      QUEUE_ROUTING_KEY: ${QUEUE_ROUTING_KEY}
+    depends_on:
+      - mongodb
+      - rabbitmq
+    networks:
+      - network
+  
+
+  data_transforms:
+    build: data_transforms
+    environment:
+      MONGO_URL: ${MONGO_URL}
+      DATABASE_NAME: ${DATABASE_NAME}
+      ARTISTS_COLLECTION_NAME: ${ARTISTS_COLLECTION_NAME}
+      ARTISTS_INFO_COLLECTION_NAME: ${ARTISTS_INFO_COLLECTION_NAME}
+      TRACKS_COLLECTION_NAME: ${TRACKS_COLLECTION_NAME}
+      TRACKS_TOKENS_COLLECTION_NAME: ${TRACKS_TOKENS_COLLECTION_NAME}
+      QUEUE_URL: ${QUEUE_URL}
+      QUEUE_ROUTING_KEY: ${QUEUE_ROUTING_KEY}
+    depends_on:
+      - mongodb
+      - rabbitmq
+    networks:
+      - network
+  
+
+  data_aggregation:
+    build: data_aggregation
+    environment:
+      MONGO_URL: ${MONGO_URL}
+      DATABASE_NAME: ${DATABASE_NAME}
+      ARTISTS_COLLECTION_NAME: ${ARTISTS_COLLECTION_NAME}
+      ARTISTS_INFO_COLLECTION_NAME: ${ARTISTS_INFO_COLLECTION_NAME}
+      TRACKS_COLLECTION_NAME: ${TRACKS_COLLECTION_NAME}
+      TRACKS_TOKENS_COLLECTION_NAME: ${TRACKS_TOKENS_COLLECTION_NAME}
+      BASE_PIPELINE_COLLECTION_NAME: ${BASE_PIPELINE_COLLECTION_NAME}
+    depends_on:
+      - mongodb
+    networks:
+      - network
+  
+
+  data_visualization:
+    build: data_visualization
+    ports: 
+      - '3000:3000'
+
+  
+networks:
+  network: {}
