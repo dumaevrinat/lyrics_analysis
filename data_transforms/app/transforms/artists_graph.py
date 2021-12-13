@@ -1,5 +1,5 @@
 from typing import Dict, List, Set
-from graphviz.dot import Graph
+from graphviz import Graph
 from returns.pipeline import flow
 from returns.curry import curry, partial
 
