@@ -16,10 +16,10 @@ services:
   
 
   rabbitmq:
-    image: '3.9-management'
+    image: rabbitmq:3.9-management
     ports: 
-      - '5672:5672'
-      - '15672:15672'
+      - 5672:5672
+      - 15672:15672
     networks:
       - network
   
@@ -91,8 +91,13 @@ services:
   data_visualization:
     build: data_visualization
     ports: 
-      - '3000:3000'
+      - 3000:3000
 
-  
+
+volumes:
+  mongodbdata:
+    driver: local
+
+
 networks:
   network: {}
