@@ -1,7 +1,7 @@
 import { Genre, Pos, Phrase } from '../types'
 import { uniqueValues } from '../utils/array'
 import { genreConverter, posConverter } from './converters'
-import data from './on_base_coll_data.json'
+import data from './data.json'
 
 
 const compareGenresFn = (a: string, b: string) => b.length - a.length
