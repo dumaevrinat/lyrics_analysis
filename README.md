@@ -13,6 +13,7 @@
 > **Требования для установки и запуска**: 
 > * docker
 > * docker-compose
+> * git
 
 * Клонировать репозиторий: ```git clone https://github.com/dumaevrinat/lyrics_analysis.git```.
 * Перейти в директорию проекта: ```cd lyrics_analysis```.
